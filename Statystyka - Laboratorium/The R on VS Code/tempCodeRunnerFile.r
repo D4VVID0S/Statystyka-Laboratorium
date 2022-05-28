@@ -1,0 +1,1 @@
+wiek <- read.csv2("wiek.csv", header=T)

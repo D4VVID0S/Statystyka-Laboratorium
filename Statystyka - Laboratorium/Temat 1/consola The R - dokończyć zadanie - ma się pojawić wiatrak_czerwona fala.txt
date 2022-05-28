@@ -1,0 +1,1203 @@
+
+R version 4.1.3 (2022-03-10) -- "One Push-Up"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> utils:::menuInstallPkgs()
+--- Please select a CRAN mirror for use in this session ---
+Warning: failed to download mirrors file (cannot open URL 'https://cran.r-project.org/CRAN_mirrors.csv'); using local file 'C:/PROGRA~1/R/R-41~1.3/doc/CRAN_mirrors.csv'
+Warning message:
+In download.file(url, destfile = f, quiet = TRUE) :
+  InternetOpenUrl failed: 'The server name or address could not be resolved'
+> w <- 5:1
+> w
+[1] 5 4 3 2 1
+> w
+[1] 5 4 3 2 1
+> w
+[1] 5 4 3 2 1
+> w
+[1] 5 4 3 2 1
+> w <- 5:2
+> w
+[1] 5 4 3 2
+> w <- 5:0
+> w
+[1] 5 4 3 2 1 0
+> 
+> cls
+Error: object 'cls' not found
+> clear
+Error: object 'clear' not found
+> help
+function (topic, package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
+    try.all.packages = getOption("help.try.all.packages"), 
+    help_type = getOption("help_type")) 
+{
+    types <- c("text", "html", "pdf")
+    help_type <- if (!length(help_type)) 
+        "text"
+    else match.arg(tolower(help_type), types)
+    if (!missing(package)) 
+        if (is.name(y <- substitute(package))) 
+            package <- as.character(y)
+    if (missing(topic)) {
+        if (!is.null(package)) {
+            if (interactive() && help_type == "html") {
+                port <- tools::startDynamicHelp(NA)
+                if (port <= 0L) 
+                  return(library(help = package, lib.loc = lib.loc, 
+                    character.only = TRUE))
+                browser <- if (.Platform$GUI == "AQUA") {
+                  get("aqua.browser", envir = as.environment("tools:RGUI"))
+                }
+                else getOption("browser")
+                browseURL(paste0("http://127.0.0.1:", port, 
+                  "/library/", package, "/html/00Index.html"), 
+                  browser)
+                return(invisible())
+            }
+            else return(library(help = package, lib.loc = lib.loc, 
+                character.only = TRUE))
+        }
+        if (!is.null(lib.loc)) 
+            return(library(lib.loc = lib.loc))
+        topic <- "help"
+        package <- "utils"
+        lib.loc <- .Library
+    }
+    ischar <- tryCatch(is.character(topic) && length(topic) == 
+        1L, error = function(e) FALSE)
+    if (!ischar) {
+        reserved <- c("TRUE", "FALSE", "NULL", 
+            "Inf", "NaN", "NA", "NA_integer_", 
+            "NA_real_", "NA_complex_", "NA_character_")
+        stopic <- deparse1(substitute(topic))
+        if (!is.name(substitute(topic)) && !stopic %in% reserved) 
+            stop("'topic' should be a name, length-one character vector or reserved word")
+        topic <- stopic
+    }
+    paths <- index.search(topic, find.package(if (is.null(package)) 
+        loadedNamespaces()
+    else package, lib.loc, verbose = verbose))
+    try.all.packages <- !length(paths) && is.logical(try.all.packages) && 
+        !is.na(try.all.packages) && try.all.packages && is.null(package) && 
+        is.null(lib.loc)
+    if (try.all.packages) {
+        for (lib in .libPaths()) {
+            packages <- .packages(TRUE, lib)
+            packages <- packages[is.na(match(packages, .packages()))]
+            paths <- c(paths, index.search(topic, file.path(lib, 
+                packages)))
+        }
+        paths <- paths[nzchar(paths)]
+    }
+    structure(unique(paths), call = match.call(), topic = topic, 
+        tried_all_packages = try.all.packages, type = help_type, 
+        class = "help_files_with_topic")
+}
+<bytecode: 0x000000001613fc10>
+<environment: namespace:utils>
+> getwd()
+[1] "C:/Users/matix/OneDrive/UKSW/UKSW Informatyka 2021-2022/Semestr 2/Statystyka - Laboratorium/Temat 1"
+> list.files()
+[1] "26IIIfunkcjeR.R.txt" "26IIIpodstawyR.R"    "boe.csv"            
+[4] "cpi2.csv"            "pd26III.csv"         "pd26III.txt"        
+> w <- 5:1
+> n,
+Error: unexpected ',' in "n,"
+> TransakcjeBankow <- list(bank=c('A', 'B'), KwotaTransakcji=c(125,521)) => TransakcjeBankow$bank
+Error: '=>' is disabled; set '_R_USE_PIPEBIND_' envvar to a true value to enable it
+> TransakcjeBankow <- list(bank=c('A', 'B'), KwotaTransakcji=c(125,521))
+> TransakcjeBankow
+$bank
+[1] "A" "B"
+
+$KwotaTransakcji
+[1] 125 521
+
+> TransakcjeBankow[2]
+$KwotaTransakcji
+[1] 125 521
+
+> TransakcjeBankow[3]
+$<NA>
+NULL
+
+> TransakcjeBankow[1][1]
+$bank
+[1] "A" "B"
+
+> 
+> TransakcjeBankow[1][3]
+$<NA>
+NULL
+
+> TransakcjeBankow$bank
+[1] "A" "B"
+> TransakcjeBankow$KwotaTransakcji
+[1] 125 521
+> TransakcjeBankow[[1]][2]
+[1] "B"
+> TransakcjeBankow[[1]][1]
+[1] "A"
+> getwd()
+[1] "C:/Users/matix/OneDrive/UKSW/UKSW Informatyka 2021-2022/Semestr 2/Statystyka - Laboratorium/Temat 1"
+> list.files()
+[1] "26IIIfunkcjeR.R.txt" "26IIIpodstawyR.R"    "boe.csv"            
+[4] "cpi2.csv"            "pd26III.csv"         "pd26III.txt"        
+> read.csv2()
+Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+  argument "file" is missing, with no default
+> read.pd26iii()
+Error in read.pd26iii() : could not find function "read.pd26iii"
+> PlikTestowyTXT <- read.table("Pd26III.txt",header=T,sep="\t",dec=".")
+> PlikTestowyTXT
+  x    y
+1 1 21.2
+2 2 34.4
+3 3 67.5
+4 4 78.1
+5 5 89.2
+> PlikTestowyTXT[1]
+  x
+1 1
+2 2
+3 3
+4 4
+5 5
+> PlikTestowyTXT[2]
+     y
+1 21.2
+2 34.4
+3 67.5
+4 78.1
+5 89.2
+> PlikTestowyTXT[[1]][1]
+[1] 1
+> PlikTestowyTXT["x"][1]
+  x
+1 1
+2 2
+3 3
+4 4
+5 5
+> PlikTestowyTXT["x"]
+  x
+1 1
+2 2
+3 3
+4 4
+5 5
+> PlikTestowyTXT[1] + PlikTestowyTXT[2]
+     x
+1 22.2
+2 36.4
+3 70.5
+4 82.1
+5 94.2
+> z <- PlikTestowyTXT[1] + PlikTestowyTXT[2]
+> z
+     x
+1 22.2
+2 36.4
+3 70.5
+4 82.1
+5 94.2
+> assign('z', PlikTestowyTXT[1] + PlikTestowyTXT[2])
+> z
+     x
+1 22.2
+2 36.4
+3 70.5
+4 82.1
+5 94.2
+> PlikTestowyTXT
+  x    y
+1 1 21.2
+2 2 34.4
+3 3 67.5
+4 4 78.1
+5 5 89.2
+> is.z
+Error: object 'is.z' not found
+> z
+     x
+1 22.2
+2 36.4
+3 70.5
+4 82.1
+5 94.2
+> help(c)
+starting httpd help server ... done
+> z <- PlikTestowyTXT$x + PlikTestowyTXT$y
+> z
+[1] 22.2 36.4 70.5 82.1 94.2
+> nowy <- cbind(PlikTestowyTXT, z)
+> z
+[1] 22.2 36.4 70.5 82.1 94.2
+> nowy
+  x    y    z
+1 1 21.2 22.2
+2 2 34.4 36.4
+3 3 67.5 70.5
+4 4 78.1 82.1
+5 5 89.2 94.2
+> ?rename.vars
+No documentation for ‘rename.vars’ in specified packages and libraries:
+you could try ‘??rename.vars’
+> ?rename.var
+No documentation for ‘rename.var’ in specified packages and libraries:
+you could try ‘??rename.var’
+> ?rename.vars
+No documentation for ‘rename.vars’ in specified packages and libraries:
+you could try ‘??rename.vars’
+> utils:::menuInstallPkgs()
+Warning: unable to access index for repository https://cloud.r-project.org/src/contrib:
+  cannot open URL 'https://cloud.r-project.org/src/contrib/PACKAGES'
+Error in install.packages(lib = .libPaths()[1L], dependencies = NA, type = type) : 
+  argument "pkgs" is missing, with no default
+> utils:::menuInstallPkgs()
+Warning in install.packages(lib = .libPaths()[1L], dependencies = NA, type = type) :
+  'lib = "C:/Program Files/R/R-4.1.3/library"' is not writable
+Error in install.packages(lib = .libPaths()[1L], dependencies = NA, type = type) : 
+  unable to install packages
+> utils:::menuInstallPkgs()
+Warning in install.packages(lib = .libPaths()[1L], dependencies = NA, type = type) :
+  'lib = "C:/Program Files/R/R-4.1.3/library"' is not writable
+also installing the dependency ‘gtools’
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/gtools_3.9.2.zip'
+Content type 'application/zip' length 366715 bytes (358 KB)
+downloaded 358 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/gdata_2.18.0.zip'
+Content type 'application/zip' length 1263779 bytes (1.2 MB)
+downloaded 1.2 MB
+
+package ‘gtools’ successfully unpacked and MD5 sums checked
+package ‘gdata’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\matix\AppData\Local\Temp\RtmpQ5ZXvt\downloaded_packages
+> ?rename.vars
+No documentation for ‘rename.vars’ in specified packages and libraries:
+you could try ‘??rename.vars’
+> rename.var
+Error: object 'rename.var' not found
+> ?rename.var
+No documentation for ‘rename.var’ in specified packages and libraries:
+you could try ‘??rename.var’
+> ?rename.vars
+No documentation for ‘rename.vars’ in specified packages and libraries:
+you could try ‘??rename.vars’
+> help(rename.vars)
+No documentation for ‘rename.vars’ in specified packages and libraries:
+you could try ‘??rename.vars’
+> library(gdata)
+gdata: Unable to locate valid perl interpreter
+gdata: 
+gdata: read.xls() will be unable to read Excel XLS and
+gdata: XLSX files unless the 'perl=' argument is used to
+gdata: specify the location of a valid perl intrpreter.
+gdata: 
+gdata: (To avoid display of this message in the future,
+gdata: please ensure perl is installed and available on
+gdata: the executable search path.)
+gdata: Unable to load perl libaries needed by read.xls()
+gdata: to support 'XLX' (Excel 97-2004) files.
+
+gdata: Unable to load perl libaries needed by read.xls()
+gdata: to support 'XLSX' (Excel 2007+) files.
+
+gdata: Run the function 'installXLSXsupport()'
+gdata: to automatically download and install the perl
+gdata: libaries needed to support Excel XLS and XLSX
+gdata: formats.
+
+Attaching package: ‘gdata’
+
+The following object is masked from ‘package:stats’:
+
+    nobs
+
+The following object is masked from ‘package:utils’:
+
+    object.size
+
+The following object is masked from ‘package:base’:
+
+    startsWith
+
+> ?rename.vars
+> PlikTestowyTXT[3]
+Error in `[.data.frame`(PlikTestowyTXT, 3) : undefined columns selected
+> PlikTestowyTXT <- read.table("Pd26III.txt",header=T,sep="\t",dec=".")
+> 
+> z
+[1] 22.2 36.4 70.5 82.1 94.2
+> nowy
+  x    y    z
+1 1 21.2 22.2
+2 2 34.4 36.4
+3 3 67.5 70.5
+4 4 78.1 82.1
+5 5 89.2 94.2
+> PlikTestowyTXT
+  x    y
+1 1 21.2
+2 2 34.4
+3 3 67.5
+4 4 78.1
+5 5 89.2
+> z <- PlikTestowyTXT$x + PlikTestowyTXT$y
+> z
+[1] 22.2 36.4 70.5 82.1 94.2
+> z <- PlikTestowyTXT[1] + PlikTestowyTXT[2]
+> z
+     x
+1 22.2
+2 36.4
+3 70.5
+4 82.1
+5 94.2
+> names(PlikTestowyTXT)
+[1] "x" "y"
+> z <- rename.vars(z, c("x"), c("z"))
+
+Changing in z       
+From: x
+To:   z
+
+> z
+     z
+1 22.2
+2 36.4
+3 70.5
+4 82.1
+5 94.2
+> nowy
+  x    y    z
+1 1 21.2 22.2
+2 2 34.4 36.4
+3 3 67.5 70.5
+4 4 78.1 82.1
+5 5 89.2 94.2
+> write.csv2(nowy,file="wynik.csv")
+> nowy
+  x    y    z
+1 1 21.2 22.2
+2 2 34.4 36.4
+3 3 67.5 70.5
+4 4 78.1 82.1
+5 5 89.2 94.2
+> plot(1:5,sin(-1:3))
+> 
+> a=-2
+> b=3
+> c=-1
+> x=c(-4:4)
+> 
+> plot(x,a*x+b,type="b")
+> plot(x,a*x^2+b*x+c,type="b",pch=1,col="blue",main="Parabola",xlab="Argumenty funkcji f(x)",ylab="Wartosci f(x)")
+> 
+> par(mfrow=c(2,1))
+> plot(x,a*x+b,type="b")
+> plot(x,a*x^2+b*x+c,type="b",pch=1,col="blue",main="Parabola",xlab="Argumenty funkcji f(x)",ylab="Wartosci f(x)")
+> lines(x,b*x+c,type="p",pch=3,col="green")
+> 
+> pdf("ProstaParabola.pdf", width=7, height=6) # width, height - cale
+> plot(x,a*x^2+b*x+c,type="b",pch=1,col="blue",main="Prosta i Parabola",xlab="Argumenty funkcji f(x)",ylab="Wartosci f(x)",ylim=c(-40,15))
+> lines(x,b*x+c,type="p",pch=3,col="green")
+> points(x,a*x+c,type="p",pch=2,col="red")
+> abline(h=0, col="grey", lwd=1)
+> abline(v=0, col="grey", lwd=1)
+> legend("bottomright", c("a*x^2+b*x+c","b*x+c","a*x+c"), col=c("blue","green","red"), pch=c(1,3,2))
+> dev.off()
+windows 
+      2 
+> 
+> 
+> library(plot3D)
+Error in library(plot3D) : there is no package called ‘plot3D’
+> library(scatterplot3d)
+Error in library(scatterplot3d) : 
+  there is no package called ‘scatterplot3d’
+> 
+> x<-c(1:20)
+> y<-c(runif(20))
+> z<-c(runif(20))
+> 
+> hist(x,5)
+> 
+> scatterplot3d(x,y,z,highlight.3d=TRUE,col.grid="lightblue",pch=19)
+Error in scatterplot3d(x, y, z, highlight.3d = TRUE, col.grid = "lightblue",  : 
+  could not find function "scatterplot3d"
+> example(scatter3D) # 
+Warning message:
+In example(scatter3D) : no help found for ‘scatter3D’
+> example(slice3D) #
+Warning message:
+In example(slice3D) : no help found for ‘slice3D’
+> 
+> plot(1:7,sin(-3:3),type="b",pch=3,col="blue",main="Sin(x)",xlab="argumenty funkcji sin",ylab="wartosci")
+> k1=sample(c(2,3,3.5,4,4.5,5),40,T)
+> k2=sample(c(2,3,3.5,4,4.5,5),40,T)
+> par(mfrow=c(1,2))
+> barplot(k1)
+> barplot(k2)
+> 
+> par(mfrow=c(2,1))
+> barplot(sort(k1))
+> table(k1,k1)
+     k1
+k1     2  3 3.5  4 4.5  5
+  2    5  0   0  0   0  0
+  3    0 12   0  0   0  0
+  3.5  0  0   3  0   0  0
+  4    0  0   0  8   0  0
+  4.5  0  0   0  0   4  0
+  5    0  0   0  0   0  8
+> barplot(table(k1,k1))
+> table(k1,k2)
+     k2
+k1    2 3 3.5 4 4.5 5
+  2   0 3   0 1   1 0
+  3   4 1   1 3   2 1
+  3.5 0 0   2 0   1 0
+  4   0 3   2 2   0 1
+  4.5 0 2   0 0   1 1
+  5   1 0   0 3   3 1
+> 
+> par(mfrow=c(1,1))
+> barplot(table(k1,k2),col=rainbow(6),legend.text=T,beside=T)
+> 
+> colors()
+  [1] "white"                "aliceblue"            "antiquewhite"         "antiquewhite1"        "antiquewhite2"        "antiquewhite3"        "antiquewhite4"       
+  [8] "aquamarine"           "aquamarine1"          "aquamarine2"          "aquamarine3"          "aquamarine4"          "azure"                "azure1"              
+ [15] "azure2"               "azure3"               "azure4"               "beige"                "bisque"               "bisque1"              "bisque2"             
+ [22] "bisque3"              "bisque4"              "black"                "blanchedalmond"       "blue"                 "blue1"                "blue2"               
+ [29] "blue3"                "blue4"                "blueviolet"           "brown"                "brown1"               "brown2"               "brown3"              
+ [36] "brown4"               "burlywood"            "burlywood1"           "burlywood2"           "burlywood3"           "burlywood4"           "cadetblue"           
+ [43] "cadetblue1"           "cadetblue2"           "cadetblue3"           "cadetblue4"           "chartreuse"           "chartreuse1"          "chartreuse2"         
+ [50] "chartreuse3"          "chartreuse4"          "chocolate"            "chocolate1"           "chocolate2"           "chocolate3"           "chocolate4"          
+ [57] "coral"                "coral1"               "coral2"               "coral3"               "coral4"               "cornflowerblue"       "cornsilk"            
+ [64] "cornsilk1"            "cornsilk2"            "cornsilk3"            "cornsilk4"            "cyan"                 "cyan1"                "cyan2"               
+ [71] "cyan3"                "cyan4"                "darkblue"             "darkcyan"             "darkgoldenrod"        "darkgoldenrod1"       "darkgoldenrod2"      
+ [78] "darkgoldenrod3"       "darkgoldenrod4"       "darkgray"             "darkgreen"            "darkgrey"             "darkkhaki"            "darkmagenta"         
+ [85] "darkolivegreen"       "darkolivegreen1"      "darkolivegreen2"      "darkolivegreen3"      "darkolivegreen4"      "darkorange"           "darkorange1"         
+ [92] "darkorange2"          "darkorange3"          "darkorange4"          "darkorchid"           "darkorchid1"          "darkorchid2"          "darkorchid3"         
+ [99] "darkorchid4"          "darkred"              "darksalmon"           "darkseagreen"         "darkseagreen1"        "darkseagreen2"        "darkseagreen3"       
+[106] "darkseagreen4"        "darkslateblue"        "darkslategray"        "darkslategray1"       "darkslategray2"       "darkslategray3"       "darkslategray4"      
+[113] "darkslategrey"        "darkturquoise"        "darkviolet"           "deeppink"             "deeppink1"            "deeppink2"            "deeppink3"           
+[120] "deeppink4"            "deepskyblue"          "deepskyblue1"         "deepskyblue2"         "deepskyblue3"         "deepskyblue4"         "dimgray"             
+[127] "dimgrey"              "dodgerblue"           "dodgerblue1"          "dodgerblue2"          "dodgerblue3"          "dodgerblue4"          "firebrick"           
+[134] "firebrick1"           "firebrick2"           "firebrick3"           "firebrick4"           "floralwhite"          "forestgreen"          "gainsboro"           
+[141] "ghostwhite"           "gold"                 "gold1"                "gold2"                "gold3"                "gold4"                "goldenrod"           
+[148] "goldenrod1"           "goldenrod2"           "goldenrod3"           "goldenrod4"           "gray"                 "gray0"                "gray1"               
+[155] "gray2"                "gray3"                "gray4"                "gray5"                "gray6"                "gray7"                "gray8"               
+[162] "gray9"                "gray10"               "gray11"               "gray12"               "gray13"               "gray14"               "gray15"              
+[169] "gray16"               "gray17"               "gray18"               "gray19"               "gray20"               "gray21"               "gray22"              
+[176] "gray23"               "gray24"               "gray25"               "gray26"               "gray27"               "gray28"               "gray29"              
+[183] "gray30"               "gray31"               "gray32"               "gray33"               "gray34"               "gray35"               "gray36"              
+[190] "gray37"               "gray38"               "gray39"               "gray40"               "gray41"               "gray42"               "gray43"              
+[197] "gray44"               "gray45"               "gray46"               "gray47"               "gray48"               "gray49"               "gray50"              
+[204] "gray51"               "gray52"               "gray53"               "gray54"               "gray55"               "gray56"               "gray57"              
+[211] "gray58"               "gray59"               "gray60"               "gray61"               "gray62"               "gray63"               "gray64"              
+[218] "gray65"               "gray66"               "gray67"               "gray68"               "gray69"               "gray70"               "gray71"              
+[225] "gray72"               "gray73"               "gray74"               "gray75"               "gray76"               "gray77"               "gray78"              
+[232] "gray79"               "gray80"               "gray81"               "gray82"               "gray83"               "gray84"               "gray85"              
+[239] "gray86"               "gray87"               "gray88"               "gray89"               "gray90"               "gray91"               "gray92"              
+[246] "gray93"               "gray94"               "gray95"               "gray96"               "gray97"               "gray98"               "gray99"              
+[253] "gray100"              "green"                "green1"               "green2"               "green3"               "green4"               "greenyellow"         
+[260] "grey"                 "grey0"                "grey1"                "grey2"                "grey3"                "grey4"                "grey5"               
+[267] "grey6"                "grey7"                "grey8"                "grey9"                "grey10"               "grey11"               "grey12"              
+[274] "grey13"               "grey14"               "grey15"               "grey16"               "grey17"               "grey18"               "grey19"              
+[281] "grey20"               "grey21"               "grey22"               "grey23"               "grey24"               "grey25"               "grey26"              
+[288] "grey27"               "grey28"               "grey29"               "grey30"               "grey31"               "grey32"               "grey33"              
+[295] "grey34"               "grey35"               "grey36"               "grey37"               "grey38"               "grey39"               "grey40"              
+[302] "grey41"               "grey42"               "grey43"               "grey44"               "grey45"               "grey46"               "grey47"              
+[309] "grey48"               "grey49"               "grey50"               "grey51"               "grey52"               "grey53"               "grey54"              
+[316] "grey55"               "grey56"               "grey57"               "grey58"               "grey59"               "grey60"               "grey61"              
+[323] "grey62"               "grey63"               "grey64"               "grey65"               "grey66"               "grey67"               "grey68"              
+[330] "grey69"               "grey70"               "grey71"               "grey72"               "grey73"               "grey74"               "grey75"              
+[337] "grey76"               "grey77"               "grey78"               "grey79"               "grey80"               "grey81"               "grey82"              
+[344] "grey83"               "grey84"               "grey85"               "grey86"               "grey87"               "grey88"               "grey89"              
+[351] "grey90"               "grey91"               "grey92"               "grey93"               "grey94"               "grey95"               "grey96"              
+[358] "grey97"               "grey98"               "grey99"               "grey100"              "honeydew"             "honeydew1"            "honeydew2"           
+[365] "honeydew3"            "honeydew4"            "hotpink"              "hotpink1"             "hotpink2"             "hotpink3"             "hotpink4"            
+[372] "indianred"            "indianred1"           "indianred2"           "indianred3"           "indianred4"           "ivory"                "ivory1"              
+[379] "ivory2"               "ivory3"               "ivory4"               "khaki"                "khaki1"               "khaki2"               "khaki3"              
+[386] "khaki4"               "lavender"             "lavenderblush"        "lavenderblush1"       "lavenderblush2"       "lavenderblush3"       "lavenderblush4"      
+[393] "lawngreen"            "lemonchiffon"         "lemonchiffon1"        "lemonchiffon2"        "lemonchiffon3"        "lemonchiffon4"        "lightblue"           
+[400] "lightblue1"           "lightblue2"           "lightblue3"           "lightblue4"           "lightcoral"           "lightcyan"            "lightcyan1"          
+[407] "lightcyan2"           "lightcyan3"           "lightcyan4"           "lightgoldenrod"       "lightgoldenrod1"      "lightgoldenrod2"      "lightgoldenrod3"     
+[414] "lightgoldenrod4"      "lightgoldenrodyellow" "lightgray"            "lightgreen"           "lightgrey"            "lightpink"            "lightpink1"          
+[421] "lightpink2"           "lightpink3"           "lightpink4"           "lightsalmon"          "lightsalmon1"         "lightsalmon2"         "lightsalmon3"        
+[428] "lightsalmon4"         "lightseagreen"        "lightskyblue"         "lightskyblue1"        "lightskyblue2"        "lightskyblue3"        "lightskyblue4"       
+[435] "lightslateblue"       "lightslategray"       "lightslategrey"       "lightsteelblue"       "lightsteelblue1"      "lightsteelblue2"      "lightsteelblue3"     
+[442] "lightsteelblue4"      "lightyellow"          "lightyellow1"         "lightyellow2"         "lightyellow3"         "lightyellow4"         "limegreen"           
+[449] "linen"                "magenta"              "magenta1"             "magenta2"             "magenta3"             "magenta4"             "maroon"              
+[456] "maroon1"              "maroon2"              "maroon3"              "maroon4"              "mediumaquamarine"     "mediumblue"           "mediumorchid"        
+[463] "mediumorchid1"        "mediumorchid2"        "mediumorchid3"        "mediumorchid4"        "mediumpurple"         "mediumpurple1"        "mediumpurple2"       
+[470] "mediumpurple3"        "mediumpurple4"        "mediumseagreen"       "mediumslateblue"      "mediumspringgreen"    "mediumturquoise"      "mediumvioletred"     
+[477] "midnightblue"         "mintcream"            "mistyrose"            "mistyrose1"           "mistyrose2"           "mistyrose3"           "mistyrose4"          
+[484] "moccasin"             "navajowhite"          "navajowhite1"         "navajowhite2"         "navajowhite3"         "navajowhite4"         "navy"                
+[491] "navyblue"             "oldlace"              "olivedrab"            "olivedrab1"           "olivedrab2"           "olivedrab3"           "olivedrab4"          
+[498] "orange"               "orange1"              "orange2"              "orange3"              "orange4"              "orangered"            "orangered1"          
+[505] "orangered2"           "orangered3"           "orangered4"           "orchid"               "orchid1"              "orchid2"              "orchid3"             
+[512] "orchid4"              "palegoldenrod"        "palegreen"            "palegreen1"           "palegreen2"           "palegreen3"           "palegreen4"          
+[519] "paleturquoise"        "paleturquoise1"       "paleturquoise2"       "paleturquoise3"       "paleturquoise4"       "palevioletred"        "palevioletred1"      
+[526] "palevioletred2"       "palevioletred3"       "palevioletred4"       "papayawhip"           "peachpuff"            "peachpuff1"           "peachpuff2"          
+[533] "peachpuff3"           "peachpuff4"           "peru"                 "pink"                 "pink1"                "pink2"                "pink3"               
+[540] "pink4"                "plum"                 "plum1"                "plum2"                "plum3"                "plum4"                "powderblue"          
+[547] "purple"               "purple1"              "purple2"              "purple3"              "purple4"              "red"                  "red1"                
+[554] "red2"                 "red3"                 "red4"                 "rosybrown"            "rosybrown1"           "rosybrown2"           "rosybrown3"          
+[561] "rosybrown4"           "royalblue"            "royalblue1"           "royalblue2"           "royalblue3"           "royalblue4"           "saddlebrown"         
+[568] "salmon"               "salmon1"              "salmon2"              "salmon3"              "salmon4"              "sandybrown"           "seagreen"            
+[575] "seagreen1"            "seagreen2"            "seagreen3"            "seagreen4"            "seashell"             "seashell1"            "seashell2"           
+[582] "seashell3"            "seashell4"            "sienna"               "sienna1"              "sienna2"              "sienna3"              "sienna4"             
+[589] "skyblue"              "skyblue1"             "skyblue2"             "skyblue3"             "skyblue4"             "slateblue"            "slateblue1"          
+[596] "slateblue2"           "slateblue3"           "slateblue4"           "slategray"            "slategray1"           "slategray2"           "slategray3"          
+[603] "slategray4"           "slategrey"            "snow"                 "snow1"                "snow2"                "snow3"                "snow4"               
+[610] "springgreen"          "springgreen1"         "springgreen2"         "springgreen3"         "springgreen4"         "steelblue"            "steelblue1"          
+[617] "steelblue2"           "steelblue3"           "steelblue4"           "tan"                  "tan1"                 "tan2"                 "tan3"                
+[624] "tan4"                 "thistle"              "thistle1"             "thistle2"             "thistle3"             "thistle4"             "tomato"              
+[631] "tomato1"              "tomato2"              "tomato3"              "tomato4"              "turquoise"            "turquoise1"           "turquoise2"          
+[638] "turquoise3"           "turquoise4"           "violet"               "violetred"            "violetred1"           "violetred2"           "violetred3"          
+[645] "violetred4"           "wheat"                "wheat1"               "wheat2"               "wheat3"               "wheat4"               "whitesmoke"          
+[652] "yellow"               "yellow1"              "yellow2"              "yellow3"              "yellow4"              "yellowgreen"         
+> k1=sample(c(2,3,3.5,4,4.5,5),40,T)
+> k2=sample(c(2,3,3.5,4,4.5,5),40,T)
+> par(mfrow=c(1,2))
+> barplot(k1)
+> barplot(k2)
+> 
+> par(mfrow=c(2,1))
+> barplot(sort(k1))
+> table(k1,k1)
+     k1
+k1     2  3 3.5  4 4.5  5
+  2    4  0   0  0   0  0
+  3    0  8   0  0   0  0
+  3.5  0  0   4  0   0  0
+  4    0  0   0  6   0  0
+  4.5  0  0   0  0  14  0
+  5    0  0   0  0   0  4
+> barplot(table(k1,k1))
+> table(k1,k2)
+     k2
+k1    2 3 3.5 4 4.5 5
+  2   1 0   1 1   1 0
+  3   0 3   3 1   0 1
+  3.5 0 1   2 0   0 1
+  4   2 0   1 2   1 0
+  4.5 2 1   2 1   6 2
+  5   1 1   1 1   0 0
+> 
+> par(mfrow=c(1,1))
+> barplot(table(k1,k2),col=rainbow(6),legend.text=T,beside=T)
+> library("fanplot")
+Error in library("fanplot") : there is no package called ‘fanplot’
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2013
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+Error in rsplitnorm(n = 10000, mode = boe0$mode[i], sd = boe0$uncertainty[i],  : 
+  could not find function "rsplitnorm"
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+Error in is.data.frame(data) : object 'cpi' not found
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+Error in plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25),  : 
+  object 'cpi0' not found
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fan
+Error in fan(data = cpisim, start = y0, frequency = 4) : 
+  could not find function "fan"
+> library(plot3D)
+Error in library(plot3D) : there is no package called ‘plot3D’
+> library(scatterplot3d)
+Error in library(scatterplot3d) : 
+  there is no package called ‘scatterplot3d’
+> 
+> x<-c(1:20)
+> y<-c(runif(20))
+> z<-c(runif(20))
+> 
+> hist(x,5)
+> 
+> scatterplot3d(x,y,z,highlight.3d=TRUE,col.grid="lightblue",pch=19)
+Error in scatterplot3d(x, y, z, highlight.3d = TRUE, col.grid = "lightblue",  : 
+  could not find function "scatterplot3d"
+> example(scatter3D) # 
+Warning message:
+In example(scatter3D) : no help found for ‘scatter3D’
+> example(slice3D) #
+Warning message:
+In example(slice3D) : no help found for ‘slice3D’
+> 
+> plot(1:7,sin(-3:3),type="b",pch=3,col="blue",main="Sin(x)",xlab="argumenty funkcji sin",ylab="wartosci")
+> utils:::menuInstallPkgs()
+also installing the dependencies ‘base64enc’, ‘rlang’, ‘fastmap’, ‘htmltools’, ‘jsonlite’, ‘yaml’, ‘htmlwidgets’, ‘digest’, ‘ellipse’
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/base64enc_0.1-3.zip'
+Content type 'application/zip' length 43156 bytes (42 KB)
+downloaded 42 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/rlang_1.0.2.zip'
+Content type 'application/zip' length 1720370 bytes (1.6 MB)
+downloaded 1.6 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/fastmap_1.1.0.zip'
+Content type 'application/zip' length 215446 bytes (210 KB)
+downloaded 210 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/htmltools_0.5.2.zip'
+Content type 'application/zip' length 347448 bytes (339 KB)
+downloaded 339 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/jsonlite_1.8.0.zip'
+Content type 'application/zip' length 1155741 bytes (1.1 MB)
+downloaded 1.1 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/yaml_2.3.5.zip'
+Content type 'application/zip' length 209801 bytes (204 KB)
+downloaded 204 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/htmlwidgets_1.5.4.zip'
+Content type 'application/zip' length 905390 bytes (884 KB)
+downloaded 884 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/digest_0.6.29.zip'
+Content type 'application/zip' length 266587 bytes (260 KB)
+downloaded 260 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/ellipse_0.4.2.zip'
+Content type 'application/zip' length 72183 bytes (70 KB)
+downloaded 70 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/scatterD3_1.0.1.zip'
+Content type 'application/zip' length 299156 bytes (292 KB)
+downloaded 292 KB
+
+package ‘base64enc’ successfully unpacked and MD5 sums checked
+package ‘rlang’ successfully unpacked and MD5 sums checked
+package ‘fastmap’ successfully unpacked and MD5 sums checked
+package ‘htmltools’ successfully unpacked and MD5 sums checked
+package ‘jsonlite’ successfully unpacked and MD5 sums checked
+package ‘yaml’ successfully unpacked and MD5 sums checked
+package ‘htmlwidgets’ successfully unpacked and MD5 sums checked
+package ‘digest’ successfully unpacked and MD5 sums checked
+package ‘ellipse’ successfully unpacked and MD5 sums checked
+package ‘scatterD3’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\matix\AppData\Local\Temp\RtmpQ5ZXvt\downloaded_packages
+> library(scatterD3)
+> utils:::menuInstallPkgs()
+> utils:::menuInstallPkgs()
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/fanplot_4.0.0.zip'
+Content type 'application/zip' length 1971826 bytes (1.9 MB)
+downloaded 1.9 MB
+
+package ‘fanplot’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\matix\AppData\Local\Temp\RtmpQ5ZXvt\downloaded_packages
+> library(fanplot)
+> utils:::menuInstallPkgs()
+also installing the dependencies ‘colorspace’, ‘cli’, ‘crayon’, ‘utf8’, ‘farver’, ‘labeling’, ‘lifecycle’, ‘munsell’, ‘R6’, ‘RColorBrewer’, ‘viridisLite’, ‘ellipsis’, ‘fansi’, ‘pillar’, ‘vctrs’, ‘glue’, ‘gtable’, ‘isoband’, ‘scales’, ‘tibble’, ‘withr’, ‘R.oo’, ‘R.methodsS3’, ‘spatstat.data’, ‘spatstat.utils’, ‘deldir’, ‘polyclip’, ‘sp’, ‘snow’, ‘ggplot2’, ‘tripack’, ‘R.utils’, ‘sgeostat’, ‘spatstat.geom’, ‘spatstat.random’, ‘splancs’, ‘magrittr’, ‘pkgconfig’, ‘scatterplot3d’, ‘snowfall’, ‘alphahull’, ‘igraph’, ‘lle’
+
+
+  There is a binary version available but the source version is later:
+      binary source needs_compilation
+fansi  1.0.2  1.0.3              TRUE
+
+  Binaries will be installed
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/colorspace_2.0-3.zip'
+Content type 'application/zip' length 2651039 bytes (2.5 MB)
+downloaded 2.5 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/cli_3.2.0.zip'
+Content type 'application/zip' length 1257177 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/crayon_1.5.0.zip'
+Content type 'application/zip' length 160199 bytes (156 KB)
+downloaded 156 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/utf8_1.2.2.zip'
+Content type 'application/zip' length 210041 bytes (205 KB)
+downloaded 205 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/farver_2.1.0.zip'
+Content type 'application/zip' length 1752628 bytes (1.7 MB)
+downloaded 1.7 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/labeling_0.4.2.zip'
+Content type 'application/zip' length 62679 bytes (61 KB)
+downloaded 61 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/lifecycle_1.0.1.zip'
+Content type 'application/zip' length 122997 bytes (120 KB)
+downloaded 120 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/munsell_0.5.0.zip'
+Content type 'application/zip' length 245574 bytes (239 KB)
+downloaded 239 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/R6_2.5.1.zip'
+Content type 'application/zip' length 84248 bytes (82 KB)
+downloaded 82 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/RColorBrewer_1.1-2.zip'
+Content type 'application/zip' length 55707 bytes (54 KB)
+downloaded 54 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/viridisLite_0.4.0.zip'
+Content type 'application/zip' length 1299485 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/ellipsis_0.3.2.zip'
+Content type 'application/zip' length 48981 bytes (47 KB)
+downloaded 47 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/fansi_1.0.2.zip'
+Content type 'application/zip' length 365218 bytes (356 KB)
+downloaded 356 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/pillar_1.7.0.zip'
+Content type 'application/zip' length 757146 bytes (739 KB)
+downloaded 739 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/vctrs_0.3.8.zip'
+Content type 'application/zip' length 1251870 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/glue_1.6.2.zip'
+Content type 'application/zip' length 172134 bytes (168 KB)
+downloaded 168 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/gtable_0.3.0.zip'
+Content type 'application/zip' length 434432 bytes (424 KB)
+downloaded 424 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/isoband_0.2.5.zip'
+Content type 'application/zip' length 2726777 bytes (2.6 MB)
+downloaded 2.6 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/scales_1.1.1.zip'
+Content type 'application/zip' length 559653 bytes (546 KB)
+downloaded 546 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/tibble_3.1.6.zip'
+Content type 'application/zip' length 872033 bytes (851 KB)
+downloaded 851 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/withr_2.5.0.zip'
+Content type 'application/zip' length 232331 bytes (226 KB)
+downloaded 226 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/R.oo_1.24.0.zip'
+Content type 'application/zip' length 966728 bytes (944 KB)
+downloaded 944 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/R.methodsS3_1.8.1.zip'
+Content type 'application/zip' length 81982 bytes (80 KB)
+downloaded 80 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/spatstat.data_2.1-2.zip'
+Content type 'application/zip' length 4041631 bytes (3.9 MB)
+downloaded 3.9 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/spatstat.utils_2.3-0.zip'
+Content type 'application/zip' length 374323 bytes (365 KB)
+downloaded 365 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/deldir_1.0-6.zip'
+Content type 'application/zip' length 333105 bytes (325 KB)
+downloaded 325 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/polyclip_1.10-0.zip'
+Content type 'application/zip' length 716846 bytes (700 KB)
+downloaded 700 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/sp_1.4-6.zip'
+Content type 'application/zip' length 2199926 bytes (2.1 MB)
+downloaded 2.1 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/snow_0.4-4.zip'
+Content type 'application/zip' length 99111 bytes (96 KB)
+downloaded 96 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/ggplot2_3.3.5.zip'
+Content type 'application/zip' length 4129606 bytes (3.9 MB)
+downloaded 3.9 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/tripack_1.3-9.1.zip'
+Content type 'application/zip' length 552018 bytes (539 KB)
+downloaded 539 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/R.utils_2.11.0.zip'
+Content type 'application/zip' length 1412299 bytes (1.3 MB)
+downloaded 1.3 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/sgeostat_1.0-27.zip'
+Content type 'application/zip' length 155953 bytes (152 KB)
+downloaded 152 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/spatstat.geom_2.3-2.zip'
+Content type 'application/zip' length 3911161 bytes (3.7 MB)
+downloaded 3.7 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/spatstat.random_2.1-0.zip'
+Content type 'application/zip' length 987031 bytes (963 KB)
+downloaded 963 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/splancs_2.01-42.zip'
+Content type 'application/zip' length 348753 bytes (340 KB)
+downloaded 340 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/magrittr_2.0.2.zip'
+Content type 'application/zip' length 238572 bytes (232 KB)
+downloaded 232 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/pkgconfig_2.0.3.zip'
+Content type 'application/zip' length 22238 bytes (21 KB)
+downloaded 21 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/scatterplot3d_0.3-41.zip'
+Content type 'application/zip' length 338278 bytes (330 KB)
+downloaded 330 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/snowfall_1.84-6.1.zip'
+Content type 'application/zip' length 416295 bytes (406 KB)
+downloaded 406 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/alphahull_2.4.zip'
+Content type 'application/zip' length 618037 bytes (603 KB)
+downloaded 603 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/igraph_1.2.11.zip'
+Content type 'application/zip' length 9009932 bytes (8.6 MB)
+downloaded 8.6 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/lle_1.1.zip'
+Content type 'application/zip' length 190456 bytes (185 KB)
+downloaded 185 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.1/SLICER_0.2.0.zip'
+Content type 'application/zip' length 1212867 bytes (1.2 MB)
+downloaded 1.2 MB
+
+package ‘colorspace’ successfully unpacked and MD5 sums checked
+package ‘cli’ successfully unpacked and MD5 sums checked
+package ‘crayon’ successfully unpacked and MD5 sums checked
+package ‘utf8’ successfully unpacked and MD5 sums checked
+package ‘farver’ successfully unpacked and MD5 sums checked
+package ‘labeling’ successfully unpacked and MD5 sums checked
+package ‘lifecycle’ successfully unpacked and MD5 sums checked
+package ‘munsell’ successfully unpacked and MD5 sums checked
+package ‘R6’ successfully unpacked and MD5 sums checked
+package ‘RColorBrewer’ successfully unpacked and MD5 sums checked
+package ‘viridisLite’ successfully unpacked and MD5 sums checked
+package ‘ellipsis’ successfully unpacked and MD5 sums checked
+package ‘fansi’ successfully unpacked and MD5 sums checked
+package ‘pillar’ successfully unpacked and MD5 sums checked
+package ‘vctrs’ successfully unpacked and MD5 sums checked
+package ‘glue’ successfully unpacked and MD5 sums checked
+package ‘gtable’ successfully unpacked and MD5 sums checked
+package ‘isoband’ successfully unpacked and MD5 sums checked
+package ‘scales’ successfully unpacked and MD5 sums checked
+package ‘tibble’ successfully unpacked and MD5 sums checked
+package ‘withr’ successfully unpacked and MD5 sums checked
+package ‘R.oo’ successfully unpacked and MD5 sums checked
+package ‘R.methodsS3’ successfully unpacked and MD5 sums checked
+package ‘spatstat.data’ successfully unpacked and MD5 sums checked
+package ‘spatstat.utils’ successfully unpacked and MD5 sums checked
+package ‘deldir’ successfully unpacked and MD5 sums checked
+package ‘polyclip’ successfully unpacked and MD5 sums checked
+package ‘sp’ successfully unpacked and MD5 sums checked
+package ‘snow’ successfully unpacked and MD5 sums checked
+package ‘ggplot2’ successfully unpacked and MD5 sums checked
+package ‘tripack’ successfully unpacked and MD5 sums checked
+package ‘R.utils’ successfully unpacked and MD5 sums checked
+package ‘sgeostat’ successfully unpacked and MD5 sums checked
+package ‘spatstat.geom’ successfully unpacked and MD5 sums checked
+package ‘spatstat.random’ successfully unpacked and MD5 sums checked
+package ‘splancs’ successfully unpacked and MD5 sums checked
+package ‘magrittr’ successfully unpacked and MD5 sums checked
+package ‘pkgconfig’ successfully unpacked and MD5 sums checked
+package ‘scatterplot3d’ successfully unpacked and MD5 sums checked
+package ‘snowfall’ successfully unpacked and MD5 sums checked
+package ‘alphahull’ successfully unpacked and MD5 sums checked
+package ‘igraph’ successfully unpacked and MD5 sums checked
+package ‘lle’ successfully unpacked and MD5 sums checked
+package ‘SLICER’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\matix\AppData\Local\Temp\RtmpQ5ZXvt\downloaded_packages
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2013
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fan
+> ?plot
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2013
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(0, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fan
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2013
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 5)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fanlibrary("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2011
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fan
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2011
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fanlibrary("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2015
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+Error in if (any(findInterval(skew, c(-1, 1), rightmost.closed = TRUE) !=  : 
+  missing value where TRUE/FALSE needed
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fan
+Error in if ((n <- as.integer(n[1L])) > 0) { : 
+  missing value where TRUE/FALSE needed
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2015
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+Error in if (any(findInterval(skew, c(-1, 1), rightmost.closed = TRUE) !=  : 
+  missing value where TRUE/FALSE needed
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 8) # add fan
+Error in if ((n <- as.integer(n[1L])) > 0) { : 
+  missing value where TRUE/FALSE needed
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2015
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+Error in if (any(findInterval(skew, c(-1, 1), rightmost.closed = TRUE) !=  : 
+  missing value where TRUE/FALSE needed
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 8) # add fan
+Error in if ((n <- as.integer(n[1L])) > 0) { : 
+  missing value where TRUE/FALSE needed
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2015
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+Error in if (any(findInterval(skew, c(-1, 1), rightmost.closed = TRUE) !=  : 
+  missing value where TRUE/FALSE needed
+> 
+> cpi0 <- ts(cpi[time(cpi)<2013],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = 2013, frequency = 4) # add fan
+Error in if ((n <- as.integer(n[1L])) > 0) { : 
+  missing value where TRUE/FALSE needed
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2015
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+Error in if (any(findInterval(skew, c(-1, 1), rightmost.closed = TRUE) !=  : 
+  missing value where TRUE/FALSE needed
+> 
+> cpi0 <- ts(cpi[time(cpi)<2015],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fan
+Error in if ((n <- as.integer(n[1L])) > 0) { : 
+  missing value where TRUE/FALSE needed
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2015
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+Error in if (any(findInterval(skew, c(-1, 1), rightmost.closed = TRUE) !=  : 
+  missing value where TRUE/FALSE needed
+> 
+> cpi0 <- ts(cpi[time(cpi)<2015],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fan
+Error in if ((n <- as.integer(n[1L])) > 0) { : 
+  missing value where TRUE/FALSE needed
+> library("fanplot")
+> 
+> boe=read.csv("boe.csv",header=T,sep=";")
+> cpi2=read.csv("cpi2.csv",header=T,sep=";")
+> 
+> y0=2017
+> boe0 <- subset(boe, time0==y0)
+> k <- nrow(boe0)
+>  
+> cpisim <- matrix(NA, nrow = 10000, ncol = k) #simulate future values
+> for (i in 1:k) 
++    cpisim[,i]<-rsplitnorm(n=10000,mode=boe0$mode[i],sd=boe0$uncertainty[i],skew=boe0$skew[i])
+Error in if (any(findInterval(skew, c(-1, 1), rightmost.closed = TRUE) !=  : 
+  missing value where TRUE/FALSE needed
+> 
+> cpi0 <- ts(cpi[time(cpi)<2015],start=start(cpi),frequency=frequency(cpi)) # truncate cpi series
+>  
+> plot(cpi0, type = "l", lwd = 2, xlim = c(y0 - 5, y0 + 3.25), ylim = c(-2, 7)) # past data
+>  
+> fan(data = cpisim, start = y0, frequency = 4) # add fan

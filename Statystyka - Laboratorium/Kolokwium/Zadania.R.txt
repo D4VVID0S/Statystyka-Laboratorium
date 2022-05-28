@@ -1,0 +1,15 @@
+#	Proszę:
+#A0. przygotować skrypt, w którym znajdą się odpowiednie funkcje realizujące poniższe polecenia oraz wyniki tych poleceń: 
+#A1. załaładować plik z danymi Znr (gdzie nr - ostatnia cyfra Państwa nr indeksu),		2PKT
+#A2. dla zmiennej Znr policzyć: średnią arytmetyczną, medianę oraz 1-szy kwartyl zbioru danych,		4PKT
+#A3. policzyć jaki % obserwacji zawiera się między liczbami 30 a 70,		3PKT (2+1 za odp.)
+#A4. sprawdzić, czy szereg posiada obserwacje odstające za pomocą odpowiednich komend,		2PKT
+#A5. stworzyć histogram 4-klasowy.		3PKT
+
+# Następnie proszę zbadać zależność Y=f(X1,X2), czyli:
+#B1.	oszacować parametry modelu Y=f(X1), Y=f(X2) oraz  Y=f(X1,X2),				 	#5PKT
+#B2.	ocenić wpływ X1 na Y w modelu Y=f(X1), wpływ X2 na Y w modelu Y=f(X2) oraz wpływ X1 i X2 na Y w modelu Y=f(X1,X2)),	#3PKT
+#B3.	na podstawie B2 wybrać model Y=f(X1) lub Y=f(X2) w zależności od tego, który z nich lepiej opisuje relację między X a Y, 	#2PKT
+#B4.	stworzyć wykres względem wybranego w B3 modelu.
+
+#Proszę stworzyć własną funkcję, która dla zadanych danych wejściowych poda wyniki działań opsianych w punkcie A (lub w punkcie B).
